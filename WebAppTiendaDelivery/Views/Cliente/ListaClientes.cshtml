@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebAppTiendaDelivery.Models.Cliente>
+
+@{
+    ViewBag.Title = "ListaClientes";
+}
+
+<h2>ListaClientes</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Cliente", "Create", new { }, new {@class="bg-white text-decoration-none"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionPais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "text-blue bg-white" }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "text-blue bg-white" }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "text-blue bg-white" })
+        </td>
+    </tr>
+}
+
+<div>
+    @for (int i = 0; i < ViewBag.numreg; i++)
+            {
+                @Html.ActionLink((i + 1).ToString(),
+                                    "ListaClientes",
+                                    new { pag = i},
+                                    new { @class = "btn btn-primary"});
+            }
+</div>
+
+</table>
