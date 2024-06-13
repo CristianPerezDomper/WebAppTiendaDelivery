@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebAppTiendaDelivery.Models.Pedido>
+
+@{
+    ViewBag.Title = "PedidosFechas";
+}
+
+<h2>PedidosFechas</h2>
+@using (Html.BeginForm())
+
+{
+    <strong> Ingrese las fechas </strong>
+    <input type="text" name="fecInicio" value="@ViewBag.fecInicio" />
+    <input type="text" name="fecFin" value="@ViewBag.fecFin" />
+    <input type="submit" value="Consultar" />
+}
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DireccionDestinatario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CiudadDestinatario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaisDestinatario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MontoTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionDestinatario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CiudadDestinatario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaisDestinatario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empleado)
+            </td>
+            <td>
+               
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+
+    @for (int i = 0; i < ViewBag.numPagina; i++)
+    {
+        @Html.ActionLink((i + 1).ToString(),
+                 "PedidosFechas",
+                 new { pag = i, fecInicio = ViewBag.fecInicio, fecFin = ViewBag.fecFin },
+                 new { @class = "btn btn-primary" });
+
+    }
+
+</div>
