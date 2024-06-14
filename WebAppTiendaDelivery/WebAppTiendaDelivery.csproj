@@ -230,6 +230,7 @@
     <Content Include="Views\Soluciones\Home.cshtml" />
     <Content Include="Views\Cliente\ListaClientes.cshtml" />
     <Content Include="Views\Cliente\PedidosFechas.cshtml" />
+    <Content Include="Views\Cliente\PedidosCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
