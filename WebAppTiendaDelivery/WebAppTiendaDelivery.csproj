@@ -152,8 +152,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\Pedido.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
@@ -178,7 +176,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\add.gif" />
+    <Content Include="images\clientes.png" />
     <Content Include="images\contactenos.jpg" />
+    <Content Include="images\delete.gif" />
+    <Content Include="images\edit.gif" />
+    <Content Include="images\find.gif" />
     <Content Include="images\logo.png" />
     <Content Include="images\nosotros.jpg" />
     <Content Include="images\ofertas.jpg" />
@@ -229,11 +232,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Soluciones\Home.cshtml" />
     <Content Include="Views\Cliente\ListaClientes.cshtml" />
-    <Content Include="Views\Cliente\PedidosFechas.cshtml" />
-    <Content Include="Views\Cliente\PedidosCliente.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -261,6 +266,16 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio.Entidades\Dominio.Entidades.csproj">
+      <Project>{72771aa0-d6c4-48ff-89ac-b54d47141e1f}</Project>
+      <Name>Dominio.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dominio.Negocio\Dominio.Negocio.csproj">
+      <Project>{5d924853-1e1e-44e2-a400-b4f6029f7889}</Project>
+      <Name>Dominio.Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
