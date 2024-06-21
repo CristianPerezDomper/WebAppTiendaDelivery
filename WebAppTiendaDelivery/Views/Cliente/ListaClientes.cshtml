@@ -1,27 +1,28 @@
-﻿@model IEnumerable<WebAppTiendaDelivery.Models.Cliente>
+﻿@model IEnumerable<Dominio.Entidades.Cliente>
 
 @{
     ViewBag.Title = "ListaClientes";
 }
 
-<h2>ListaClientes</h2>
+<h2>Lista de Clientes</h2>
 
+<h2><img src="~/images/clientes.png" width="100" height="100" />Listado de Clientes</h2>
 <p>
-    @Html.ActionLink("Nuevo Cliente", "Create", new { }, new {@class="bg-white text-decoration-none"})
+    <img src="~/images/add.gif" /> @Html.ActionLink("Nuevo Cliente", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CodigoCliente)
+            @Html.DisplayNameFor(model => model.Idcliente)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NombreCliente)
+            @Html.DisplayNameFor(model => model.NombreCia)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Direccion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DescripcionPais)
+            @Html.DisplayNameFor(model => model.Idpais)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Telefono)
@@ -32,36 +33,39 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CodigoCliente)
+            @Html.DisplayFor(modelItem => item.Idcliente)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NombreCliente)
+            @Html.DisplayFor(modelItem => item.NombreCia)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Direccion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DescripcionPais)
+            @Html.DisplayFor(modelItem => item.Idpais)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telefono)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "text-blue bg-white" }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "text-blue bg-white" }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "text-blue bg-white" })
+            <img src="~/images/edit.gif"  />
+            @Html.ActionLink("Editar", "Edit", new {  id=item.Idcliente }) |
+            <img src="~/images/find.gif" />
+            @Html.ActionLink("Ver Detalle", "Details", new { id=item.Idcliente }) |
+            <img src="~/images/delete.gif" />
+            @Html.ActionLink("Eliminar", "Delete", new {  id=item.Idcliente })
         </td>
     </tr>
 }
 
-
 </table>
 <div>
     @for (int i = 0; i < ViewBag.numreg; i++)
-            {
-                @Html.ActionLink((i + 1).ToString(),
-                                    "ListaClientes",
-                                    new { pag = i},
-                                    new { @class = "btn btn-primary"});
-            }
+    {
+        @Html.ActionLink((i + 1).ToString(),
+                    "ListaClientes",
+                    new { pag = i },
+                    new { @class = "btn btn-primary" }
+            );
+    }
 </div>
