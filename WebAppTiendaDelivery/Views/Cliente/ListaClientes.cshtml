@@ -9,7 +9,18 @@
 <h2><img src="~/images/clientes.png" width="100" height="100" />Listado de Clientes</h2>
 <p>
     <img src="~/images/add.gif" /> @Html.ActionLink("Nuevo Cliente", "Create")
+    <img src="~/images/list.png" /> @Html.ActionLink("Reporte de clientes", "ReporteCliente")
 </p>
+
+@using(Html.BeginForm("ReporteCliente", "Cliente", FormMethod.Get))
+            {
+                <div class="btn-group">
+                    <input type="submit" formaction="DownloadPDFReport" value="PDF-Download" class="btn btn-danger"/>
+                    <input type="submit" formaction="DownloadXLSReport" value="XLS-Download" class="btn btn-success" />
+                    <input type="submit" formaction="DownloadWORDReport" value="WORD-Download" class="btn btn-warning" />
+
+                </div>
+            }
 <table class="table">
     <tr>
         <th>

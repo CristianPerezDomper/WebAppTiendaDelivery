@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Dominio.Entidades.Producto>
+
+@{
+    ViewBag.Title = "ListaProductos";
+}
+
+<br />
+<h2><img src="~/images/productos.png"  width="100" height="100"/> Lista de Productos</h2>
+<p>
+    <img src="~/images/add.gif"  /> @Html.ActionLink("Nuevo Producto", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UMedida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioUnidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnidadesEnExistencia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UMedida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnidadesEnExistencia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.IdProducto  }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.IdProducto  }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdProducto  })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @for (int i = 0; i < ViewBag.numreg; i++)
+    {
+        @Html.ActionLink((i + 1).ToString(),
+                    "ListaProductos",
+                    new { pag = i },
+                    new { @class = "btn btn-primary" }
+            );
+    }
+</div>

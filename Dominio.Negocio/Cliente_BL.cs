@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,11 @@ namespace Dominio.Negocio
         public Cliente obtenerRegistro(string id)
         {
             return cliente.obtenerRegistro(id);
+        }
+
+        public DataTable obtenerReporteCliente()
+        {
+            return cliente.obtenerReporteCliente();
         }
     }
 }
