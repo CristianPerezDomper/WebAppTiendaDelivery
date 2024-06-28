@@ -118,5 +118,16 @@ namespace Infraestructura.Data.SqlServer
         {
             return listado().Where( c => c.Idcliente == id).FirstOrDefault();
         }
+
+        public DataTable obtenerReporteCliente()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("spGetAllClient", cn.getCNX);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Infraestructura.Data.SqlServer
 {
     public class Conexion_DAL
     {
-        SqlConnection cn = new SqlConnection("server=.;DataBase=JunioNegocio2023; uid=sa; pwd=Iquitos/12");
+        SqlConnection cn = new SqlConnection("server=.;DataBase=JunioNegocio2023; uid=sa; pwd=");
 
         public SqlConnection getCNX
         { get { return cn; } }

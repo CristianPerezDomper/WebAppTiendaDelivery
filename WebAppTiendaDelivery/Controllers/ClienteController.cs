@@ -7,6 +7,10 @@ using System.Web.Mvc;
 using Dominio.Entidades;
 using Dominio.Negocio;
 
+using Microsoft.Reporting.WebForms;
+using ReportViewerForMvc;
+using WebAppTiendaDelivery.Reportes;
+
 namespace WebAppTiendaDelivery.Controllers
 {
     public class ClienteController : Controller
@@ -87,6 +91,56 @@ namespace WebAppTiendaDelivery.Controllers
             ViewBag.mensaje = cliente.Eliminar(id);
             return RedirectToAction("ListaClientes");
         }
-        
+
+        public ActionResult ReporteCliente() 
+        { 
+            ReportViewer rpv = new ReportViewer();
+            rpv.ProcessingMode = ProcessingMode.Local;
+            rpv.SizeToReportContent = true;
+
+            rpv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\rptClientes.rdlc";
+            rpv.LocalReport.DataSources.Add(new ReportDataSource("dsNegocios", cliente.obtenerReporteCliente()));
+
+            ViewBag.ReportViewer = rpv;
+
+            return View();
+        }
+
+        public FileResult DownloadPDFReport()
+        {
+            string FileNameReportPDF = "clientes" + "-" + DateTime.Now + ".pdf";
+            LocalReport localReport = new LocalReport();
+            localReport.DataSources.Clear();
+            localReport.DataSources.Add(new ReportDataSource("dsNegocios", cliente.obtenerReporteCliente()));
+            localReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\rptClientes.rdlc";
+
+            byte[] bytes = localReport.Render("PDF");
+            return File(bytes, "application/pdf", FileNameReportPDF);
+        }
+
+        public FileResult DownloadXLSReport()
+        {
+            string FileNameReportXLS = "clientes" + "-" + DateTime.Now + ".xls";
+            LocalReport localReport = new LocalReport();
+            localReport.DataSources.Clear();
+            localReport.DataSources.Add(new ReportDataSource("dsNegocios", cliente.obtenerReporteCliente()));
+            localReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\rptClientes.rdlc";
+
+            byte[] bytes = localReport.Render("Excel");
+            return File(bytes, "application/vnd.ms-excel", FileNameReportXLS);
+        }
+
+        public FileResult DownloadWORDReport()
+        {
+            string FileNameReportWORD = "clientes" + "-" + DateTime.Now + ".doc";
+            LocalReport localReport = new LocalReport();
+            localReport.DataSources.Clear();
+            localReport.DataSources.Add(new ReportDataSource("dsNegocios", cliente.obtenerReporteCliente()));
+            localReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\rptClientes.rdlc";
+
+            byte[] bytes = localReport.Render("WORD");
+            return File(bytes, "application/msword", FileNameReportWORD);
+        }
+
     }
 }
